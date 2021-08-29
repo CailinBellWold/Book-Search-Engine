@@ -16,9 +16,6 @@ This assignment includes:
 1. When the search engine loads, the user is presented with a menu with the options Search for Books and Login/Signup and an input field to search for books and a submit button.
 2. When a user clicks on the Search for Books menu option, they are presented with an input field to search for books and a submit button. 
 3. When a user is not logged in and enters a search term in the input field, then clicks the submit button, they are presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site.
-4. 
-
-When the navigation titles are viewed, the user is presented with the titles About Me, Portfolio, Contact, and Resume, and the title corresponding to the current section is highlighted.
 4. When a navigation title is clicked, the user is presented with the corresponding section below the navigation without the page reloading and that title is highlighted.
 5. When a user clicks on the Login/Signup menu option, a modal appears on the screen with a toggle between the option to log in or sign up.
 6. When the toggle is set to Signup, then the user is presented with three inputs for a username, an email address, and a password, and a signup button.
