@@ -10,7 +10,6 @@ import { setContext } from '@apollo/client/link/context';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
-// import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,14 +35,12 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          {/* <StoreProvider> */}
             <Navbar />
             <Switch>
               <Route exact path='/' component={SearchBooks} />
               <Route exact path='/saved' component={SavedBooks} />
               <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
             </Switch>
-          {/* </StoreProvider> */}
         </>
       </Router>
     </ApolloProvider>

@@ -49,7 +49,6 @@ export const SAVE_BOOK = gql`
       link
       }
     }
-  }
 `;
 
 export const REMOVE_BOOK = gql`
@@ -63,5 +62,4 @@ export const REMOVE_BOOK = gql`
       link
       }
     }
-  }
 `;
