@@ -6,7 +6,8 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('books');
+        const userData = await User.findOne({ _id: context.user._id }).populate('savedBooks');
+        return userData;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -22,7 +23,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError('No user found');
       }
 
       const correctPw = await user.isCorrectPassword(password);
