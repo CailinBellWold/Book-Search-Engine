@@ -1,14 +1,27 @@
 // see SignupForm.js for comments
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { loginUser } from '../utils/API';
+// import { loginUser } from '../utils/API';
+
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
+
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,22 +39,23 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await loginUser(userFormData);
-
-      if (!response.ok) {
+      console.log("TRYBLOCKLOGIN");
+      const response = await loginUser({variables: {...userFormData}});
+      console.log("RESPONSE", response);
+      if (!response) {
         throw new Error('something went wrong!');
       }
 
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      // const { token, user } = await response.json();
+      // console.log(user);
+      Auth.login(response.data.login.token);
+      console.log("AUTH.LOGIN", response.data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
